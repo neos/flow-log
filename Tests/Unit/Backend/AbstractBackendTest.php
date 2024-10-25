@@ -20,39 +20,23 @@ use Neos\Flow\Tests\UnitTestCase;
 class AbstractBackendTest extends UnitTestCase
 {
     /**
-     * @var AbstractBackend
-     */
-    protected $backendClassName;
-
-    /**
-     * @return void
-     */
-    protected function setUp(): void
-    {
-        $this->backendClassName = 'ConcreteBackend_' . md5(uniqid(mt_rand(), true));
-        eval('
-			class ' . $this->backendClassName . ' extends \Neos\Flow\Log\Backend\AbstractBackend {
-				protected $someOption;
-				public function open(): void {}
-				public function append(string $message, int $severity = 1, $additionalData = NULL, string $packageKey = NULL, string $className = NULL, string $methodName = NULL): void {}
-				public function close(): void {}
-				public function setSomeOption($value) {
-					$this->someOption = $value;
-				}
-				public function getSomeOption() {
-					return $this->someOption;
-				}
-			}
-		');
-    }
-
-    /**
      * @test
      */
     public function theConstructorCallsSetterMethodsForAllSpecifiedOptions()
     {
-        $className = $this->backendClassName;
-        $backend = new $className(['someOption' => 'someValue']);
+        $backend = new class (['someOption' => 'someValue']) extends AbstractBackend
+        {
+            protected $someOption;
+            public function open(): void {}
+            public function append(string $message, int $severity = 1, $additionalData = NULL, string $packageKey = NULL, string $className = NULL, string $methodName = NULL): void {}
+            public function close(): void {}
+            public function setSomeOption($value) {
+                $this->someOption = $value;
+            }
+            public function getSomeOption() {
+                return $this->someOption;
+            }
+        };
         self::assertSame('someValue', $backend->getSomeOption());
     }
 }
