@@ -90,7 +90,7 @@ class FileBackendTest extends UnitTestCase
         $backend->append('foo');
 
         $pidOffset = function_exists('posix_getpid') ? 10 : 0;
-        self::assertSame(68 + $pidOffset + strlen(PHP_EOL), vfsStreamWrapper::getRoot()->getChild('test.log')->size());
+        self::assertSame(69 + $pidOffset + strlen(PHP_EOL), vfsStreamWrapper::getRoot()->getChild('test.log')->size());
     }
 
     /**
