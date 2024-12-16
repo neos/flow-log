@@ -239,7 +239,7 @@ class FileBackend extends AbstractBackend
         } else {
             $processId = ' ' . str_pad((string)getmypid(), 10);
         }
-        $ipAddress = ($this->logIpAddress === true) ? str_pad(($_SERVER['REMOTE_ADDR'] ?? ''), 15) : '';
+        $ipAddress = ($this->logIpAddress === true) ? str_pad(($_SERVER['REMOTE_ADDR'] ?? ''), 15) . ' ' : '';
         $severityLabel = $this->severityLabels[$severity] ?? 'UNKNOWN  ';
         $output = (new \DateTime())->format('y-m-d H:i:s') . $processId . ' ' . $ipAddress . $severityLabel . ' ' . str_pad((string)$packageKey, 20) . ' ' . $message;
 
