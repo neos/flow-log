@@ -22,9 +22,10 @@ class PlainTextFormatter
     }
 
     /**
+     * @param int $spaces
      * @return ?string
      */
-    public function format(int $spaces = 4)
+    public function format($spaces = 4)
     {
         return $this->renderVariableAsPlaintext($this->variable, $spaces);
     }
