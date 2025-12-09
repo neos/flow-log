@@ -24,7 +24,7 @@ class LoggerTest extends UnitTestCase
     /**
      * @return array
      */
-    public function logLevelDataSource()
+    public static function logLevelDataSource()
     {
         return [
             [LogLevel::EMERGENCY, LOG_EMERG, false],
