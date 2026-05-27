@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Neos\Flow\Log\Tests\Unit\Backend;
 
 /*
@@ -17,7 +20,7 @@ use Neos\Flow\Tests\UnitTestCase;
 /**
  * Testcase for the abstract log backend
  */
-class AbstractBackendTest extends UnitTestCase
+final class AbstractBackendTest extends UnitTestCase
 {
     /**
      * @test

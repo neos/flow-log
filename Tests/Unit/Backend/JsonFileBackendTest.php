@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Neos\Flow\Log\Tests\Unit\Backend;
 
 /*
@@ -19,7 +22,7 @@ use Neos\Flow\Tests\UnitTestCase;
 /**
  * Test case for the Json File Backend
  */
-class JsonFileBackendTest extends UnitTestCase
+final class JsonFileBackendTest extends UnitTestCase
 {
     /**
      */
@@ -50,11 +53,11 @@ class JsonFileBackendTest extends UnitTestCase
         ];
 
         self::assertGreaterThanOrEqual((new \DateTime($actualData['timestamp']))->getTimestamp(), time());
-        self::assertEquals($actualData['severity'], 'warning');
+        self::assertEquals('warning', $actualData['severity']);
         self::assertEquals($actualData['origin'], $expectedOrigin);
-        self::assertEquals($actualData['message'], 'the log message');
+        self::assertEquals('the log message', $actualData['message']);
         self::assertEquals($actualData['additionalData'], ['foo' => 'bar']);
-        self::assertEquals($actualData['remoteIp'], '');
+        self::assertEquals('', $actualData['remoteIp']);
 
 
         if (function_exists('posix_getpid')) {

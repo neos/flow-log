@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Neos\Flow\Log\Tests\Unit\Psr;
 
 /*
@@ -19,24 +22,22 @@ use Psr\Log\LogLevel;
 /**
  * Test case for PSR-3 based logger.
  */
-class LoggerTest extends UnitTestCase
+final class LoggerTest extends UnitTestCase
 {
     /**
-     * @return array
+     * @return \Iterator<(int | string), mixed>
      */
-    public static function logLevelDataSource(): array
+    public static function logLevelDataSource(): \Iterator
     {
-        return [
-            [LogLevel::EMERGENCY, LOG_EMERG, false],
-            [LogLevel::DEBUG, LOG_DEBUG, false],
-            [LogLevel::INFO, LOG_INFO, false],
-            [LogLevel::NOTICE, LOG_NOTICE, false],
-            [LogLevel::WARNING, LOG_WARNING, false],
-            [LogLevel::ERROR, LOG_ERR, false],
-            [LogLevel::CRITICAL, LOG_CRIT, false],
-            [LogLevel::ALERT, LOG_ALERT, false],
-            ['non existing loglevel', 'does not matter', true]
-        ];
+        yield [LogLevel::EMERGENCY, LOG_EMERG, false];
+        yield [LogLevel::DEBUG, LOG_DEBUG, false];
+        yield [LogLevel::INFO, LOG_INFO, false];
+        yield [LogLevel::NOTICE, LOG_NOTICE, false];
+        yield [LogLevel::WARNING, LOG_WARNING, false];
+        yield [LogLevel::ERROR, LOG_ERR, false];
+        yield [LogLevel::CRITICAL, LOG_CRIT, false];
+        yield [LogLevel::ALERT, LOG_ALERT, false];
+        yield ['non existing loglevel', 'does not matter', true];
     }
 
     /**
