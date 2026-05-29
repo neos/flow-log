@@ -57,12 +57,15 @@ final class LoggerTest extends UnitTestCase
             $mockBackend->expects($this->once())->method('append')->with('some message', $legacyLogLevel);
         }
         $psrLogger = new Logger([$mockBackend]);
-
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new \RuntimeException($errstr, $errno);
+        }, E_USER_WARNING);
         try {
             $psrLogger->log($psrLogLevel, 'some message');
         } catch (\Throwable $throwable) {
             self::assertTrue($willError, $throwable->getMessage());
         }
+        restore_error_handler();
     }
 
     /**
