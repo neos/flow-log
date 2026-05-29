@@ -13,7 +13,7 @@ namespace Neos\Flow\Log\Tests\Unit\Backend;
  * information, please view the LICENSE file which was distributed with this
  * source code.
  */
-
+use PHPUnit\Framework\Attributes\Test;
 use Neos\Flow\Log\Backend\JsonFileBackend;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
@@ -31,9 +31,7 @@ final class JsonFileBackendTest extends UnitTestCase
         vfsStream::setup('testDirectory');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function appendRendersALogEntryAndAppendsItToTheLogfile()
     {
         $logFileUrl = vfsStream::url('testDirectory') . '/test.log';

@@ -13,7 +13,8 @@ namespace Neos\Flow\Log\Tests\Unit\Psr;
  * information, please view the LICENSE file which was distributed with this
  * source code.
  */
-
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Neos\Flow\Log\Backend\BackendInterface;
 use Neos\Flow\Log\Psr\Logger;
 use Neos\Flow\Tests\UnitTestCase;
@@ -41,14 +42,14 @@ final class LoggerTest extends UnitTestCase
     }
 
     /**
-     * @dataProvider logLevelDataSource
-     * @test
      *
      * @param string $psrLogLevel
      * @param int $legacyLogLevel
      * @param bool $willError
      * @throws \ReflectionException
      */
+    #[DataProvider('logLevelDataSource')]
+    #[Test]
     public function logAcceptsOnlyValidLogLevels($psrLogLevel, $legacyLogLevel, $willError): void
     {
         $mockBackend = $this->createMock(BackendInterface::class);
@@ -65,14 +66,14 @@ final class LoggerTest extends UnitTestCase
     }
 
     /**
-     * @dataProvider logLevelDataSource
-     * @test
      *
      * @param string $psrLogLevel
      * @param int $legacyLogLevel
      * @param bool $willError
      * @throws \ReflectionException
      */
+    #[DataProvider('logLevelDataSource')]
+    #[Test]
     public function levelSpecificMethodsAreSupported($psrLogLevel, $legacyLogLevel, $willError): void
     {
         $mockBackend = $this->createMock(BackendInterface::class);
@@ -87,9 +88,7 @@ final class LoggerTest extends UnitTestCase
         $psrLogger->$psrLogLevel('some message');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function logSupportsContext(): void
     {
         $message = 'some message';
