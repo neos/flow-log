@@ -1,4 +1,5 @@
 <?php
+
 namespace Neos\Flow\Log\Tests\Unit\Backend;
 
 /*
@@ -12,9 +13,8 @@ namespace Neos\Flow\Log\Tests\Unit\Backend;
  */
 
 use Neos\Flow\Log\Backend\JsonFileBackend;
-use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamWrapper;
 use Neos\Flow\Tests\UnitTestCase;
+use org\bovigo\vfs\vfsStream;
 
 /**
  * Test case for the Json File Backend

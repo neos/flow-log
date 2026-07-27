@@ -1,4 +1,5 @@
 <?php
+
 namespace Neos\Flow\Log\Tests\Unit\Psr;
 
 /*
