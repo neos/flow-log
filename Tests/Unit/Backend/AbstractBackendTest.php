@@ -29,7 +29,7 @@ final class AbstractBackendTest extends UnitTestCase
         {
             protected $someOption;
             public function open(): void {}
-            public function append(string $message, int $severity = 1, $additionalData = NULL, string $packageKey = NULL, string $className = NULL, string $methodName = NULL): void {}
+            public function append(string $message, int $severity = 1, $additionalData = NULL, ?string $packageKey = NULL, ?string $className = NULL, ?string $methodName = NULL): void {}
             public function close(): void {}
             public function setSomeOption($value) {
                 $this->someOption = $value;
